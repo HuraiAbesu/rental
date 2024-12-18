@@ -1,0 +1,573 @@
+/* すべての要素のデフォルトスタイルをリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* パディングやボーダーが幅に含まれる */
+}
+/* 物品名（item_name）を非表示にする */
+select[name="item_name"] {
+    display: none; /* 非表示にする */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* ここでGoogleフォントのPoppinsを指定 */
+}
+
+
+/* パソコン用のヘッダースタイル */
+/* ヘッダースタイル */
+/* ヘッダースタイル */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    z-index: 100;
+}
+
+/* 左側のロゴなど */
+.header-left h1 {
+    margin-left: 20px;
+    font-size: 20px;
+    color: white;
+    line-height: 50px; /* ボタンの高さと同じ50pxに設定 */
+}
+
+/* 右側のログイン、申請状況ボタンを右端に配置 */
+.header-right {
+    display: flex;
+    justify-content: flex-end; /* 右端に配置 */
+    align-items: center;
+}
+
+.header-right a {
+    color: white;
+    text-decoration: none;
+    margin-top: -50px;
+    margin-right: 20px;
+    margin-left: 15px; /* ボタン同士に余白を追加 */
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+/* スマホ用のハンバーガーボタンの背景を無色に変更 */
+.openbtn {
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 10px;
+    background: transparent;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    z-index: 101;
+}
+
+.openbtn span {
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background: #fff;
+    width: 45%;
+}
+
+.openbtn-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.openbtn span:nth-of-type(1) {
+    top: 15px;
+}
+
+.openbtn span:nth-of-type(2) {
+    top: 23px;
+}
+
+.openbtn span:nth-of-type(3) {
+    top: 31px;
+}
+
+/* アクティブ状態のスタイル */
+.openbtn.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.openbtn.active span:nth-of-type(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ハンバーガーメニューのスタイル */
+.hamburger-menu {
+    position: fixed;
+    top: 50px;
+    right: -250px; /* 初期状態は画面外に設定 */
+    background-color: #333;
+    width: 250px;
+    height: 100vh;
+    padding-top: 20px;
+    z-index: 100;
+    transition: right 0.3s ease-in-out;
+}
+
+/* メニューが開いた状態 */
+.hamburger-menu.menu-open {
+    right: 0; /* 画面内に表示 */
+}
+
+
+.hamburger-menu.menu-close {
+    right: -200px;
+}
+
+.hamburger-menu a {
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-bottom: 1px solid #575757;
+}
+
+.hamburger-menu a:hover {
+    background-color: #575757;
+}
+
+/* パソコン用レイアウト */
+.container {
+    display: flex;
+    justify-content: center; /* 水平方向に中央揃え */
+    align-items: flex-start;  /* 垂直方向に上揃え（必要ならcenterに変更可） */
+    height: calc(100vh - 50px); /* ヘッダーの高さを引いた残りの高さ */
+    width: 100vw;
+    margin: 0;
+    padding-top: 100px; /* 上部の隙間を調整 */
+    box-sizing: border-box;
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+
+/* 質問内容（ラベル）を大きくして中央に配置 */
+label {
+    color: #333; /* 優しい黒に変更 */
+    display: block;
+    font-size: 20px; /* フォントサイズを少し小さく */
+    font-weight: 500; /* 少し軽めの太さに調整 */
+    text-align: center;
+    margin-bottom: 15px; /* 下の余白を少し減らして調整 */
+    line-height: 1.4; /* 読みやすさを高める行間 */
+}
+.redtext{
+    color: red;
+}
+
+/* select要素のスタイル */
+select {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 0 auto 20px auto; /* 上下はauto、左右は中央揃え */
+    display: block;
+    box-sizing: border-box;
+    border-radius: 8px; /* 角に丸みをつける */
+    border: 1px solid #ccc; /* ボーダーの色やスタイルを設定 */
+}
+/* テキスト入力や数字入力など、ラジオボタン以外のinput要素にスタイルを適用 */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 0 auto 20px auto; /* 上下はauto、左右は中央揃え */
+    display: block; /* ブロック要素として扱う */
+    box-sizing: border-box;
+    border-radius: 8px; /* 角に丸みをつける */
+    border: 1px solid #ccc; /* ボーダーの色やスタイルを設定 */
+}
+
+/* ラジオボタンとラベルを横並びに */
+.radio-item {
+    display: flex;
+    align-items: center; /* ラジオボタンとラベルを同じ高さに揃える */
+    margin-bottom: 5px; /* 各項目の間隔を小さく調整 */
+}
+
+/* ラジオボタンとラベルの間隔 */
+.radio-item input[type="radio"] {
+    margin-right: 10px; /* ラジオボタンとラベルの間隔を少し開ける */
+}
+
+/* ラベルのフォントサイズと間隔の調整 */
+.radio-item label {
+    font-size: 18px; /* ラベルの文字サイズ */
+    margin-right: 10px; /* ラベルの右側に少し余白を設定 */
+}
+
+
+
+button {
+    width: 80%; /* 幅を少し調整 */
+    max-width: 400px;
+    padding: 15px;
+    margin: 20px auto; /* 上下のマージンと中央揃え */
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 50px; /* より丸みを追加 */
+    cursor: pointer;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 各ボタンの色のバリエーション */
+.next-btn {
+    background: linear-gradient(135deg, #43e97b, #38f9d7); /* グリーン系 */
+}
+
+.prev-btn {
+    background: linear-gradient(135deg, #fbc2eb, #a18cd1); /* ピンクとパープル */
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2); /* ブルーとパープル */
+}
+
+
+/* ボタンの幅と間隔を調整 */
+.next-btn, .prev-btn, .submit-btn {
+    width: 100%;
+    max-width: 400px;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px; /* 丸みを強調 */
+    cursor: pointer;
+    margin: 0 auto 15px; /* 余白を調整して中央に配置 */
+    transition: background 0.3s ease, transform 0.2s ease; /* ホバーアニメーションを追加 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* プログレスバー */
+.progress-container {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 80%;
+    background-color: #ddd;
+    border-radius: 25px;
+    overflow: hidden;
+    height: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0;
+    background-color: #0072ff;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* スライド効果 */
+.form-step {
+    display: none;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.form-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.form-step.left-out {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.form-step.right-out {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+/* ポップアップをデフォルトで非表示にする */
+.modal-overlay {
+    display: none; /* 非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 背景を半透明に */
+    justify-content: center;
+    align-items: center;
+}
+
+/* ポップアップが表示されるとき */
+.modal-overlay.show {
+    display: flex; /* 表示に切り替え */
+}
+
+
+/* モーダル本体 */
+.modal {
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: black; /* ポップアップ内の文字色 */
+}
+
+/* モーダル内のボタン */
+.modal button {
+    background-color: #0072ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0; /* 上下の余白を調整 */
+    width: 100%; /* ボタンをモーダルの幅に合わせる */
+    max-width: 200px; /* ボタンの最大幅を設定して、広がりすぎを防ぐ */
+    text-align: center;
+    display: block; /* ボタンをブロック要素にして中央揃えを可能に */
+    margin-left: auto; /* 左右中央揃え */
+    margin-right: auto;
+}
+
+.modal button:hover {
+    opacity: 0.8;
+}
+
+
+/* テーブルのスタイル */
+.modal table {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.modal table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+
+
+
+
+
+/* 物品選択のスクロール可能なスタイル */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-height: 300px; /* 高さを固定してスクロールを許可 */
+    overflow-y: auto; /* 縦方向のスクロールを有効に */
+    width: 100%;
+}
+
+/* カテゴリごとのグループ */
+.category-group {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    text-align: center; /* 中央揃えにする */
+}
+
+/* カテゴリのタイトル */
+.category-group h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #0072ff;
+}
+
+/* チェックボックスのラベル */
+.category-group label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    justify-content: center; /* ラベルを中央揃えにする */
+}
+
+/* チェックボックス */
+.category-group input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.checkbox-group {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.hidden {
+    display: none;
+}
+.form-step {
+    display: none;
+}
+.form-step.active {
+    display: block;
+}
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+.modal-overlay.show {
+    display: flex;
+}
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+}
+.loading-container {
+    text-align: center;
+}
+.item-row {
+    margin-bottom: 10px;
+}
+
+
+
+
+/* モバイル対応 */
+@media screen and (max-width: 768px) {
+    .category-group {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .category-group h3 {
+        font-size: 16px;
+    }
+
+    .category-group label {
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
+/* スマホ表示時のレイアウト */
+@media screen and (max-width: 768px) {
+    /* スマホ用の設定 */
+    .container {
+        flex-direction: column; /* スマホ用に縦方向に要素を並べる */
+        justify-content: flex-start; /* 垂直方向の位置を上揃え */
+        padding-top: 80px; /* フォームを上に配置するための余白 */
+        height: auto; /* 高さを自動調整 */
+    }
+
+    /* ハンバーガーメニューとボタンを表示 */
+    .header-right {
+        display: none;
+    }
+
+    .openbtn {
+        display: block; /* スマホ用のボタンを表示 */
+    }
+
+    /* その他スマホ用の調整 */
+    form {
+        max-width: 100%; /* スマホ画面いっぱいにフォームを広げる */
+    }
+
+    select, input, button {
+        max-width: 100%; /* 幅を画面全体に合わせる */
+    }
+}

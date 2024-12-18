@@ -1,0 +1,140 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto; /* ページ全体はスクロール可能に */
+}
+
+/* ヘッダースタイル */
+header {
+    width: 100%;
+    background-color: #0072ff;
+    padding: 10px;
+    position: fixed; /* ヘッダーを固定 */
+    top: 0;
+    left: 0;
+    z-index: 100;
+    text-align: left;
+}
+
+.header-left {
+    margin-left: 20px;
+}
+
+.header-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header-link:hover {
+    text-decoration: underline;
+}
+
+/* ログインフォームのスタイル */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: fixed; /* コンテナを固定 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 画面中央に配置 */
+}
+
+/* ロゴのスタイル */
+.login-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+ 
+
+h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* 入力フィールドのスタイル */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #0072ff;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 114, 255, 0.2);
+}
+
+/* ログインボタンのスタイル */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 10px rgba(0, 114, 255, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    box-shadow: 0 8px 20px rgba(0, 114, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* エラーメッセージのスタイル */
+.error {
+    color: #ff4d4d;
+    background-color: rgba(255, 77, 77, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px;
+        width: 90%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* 中央に配置 */
+    }
+}

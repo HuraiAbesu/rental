@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マニュアル一覧表</title>
+    <link rel="stylesheet" href="./styles/rental-itemlist.css">
+    <link rel="icon" href="../ficon/rental.png" type="image/x-icon">
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <h1>マニュアル一覧表</h1>
+    </div>
+    <a href="./admin_dashboard" class="home-button">ホーム</a>
+</header>
+
+<div class="container">
+    <h2>マニュアル一覧</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>マニュアル名</th>
+                <th>バージョン</th>
+                <th>アップロード日</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 手動でPDFリンクと情報を設定 -->
+            <tr>
+                <td>
+                    <a href="./manuals/manual1.pdf" target="_blank">
+                        ユーザーマニュアル
+                    </a>
+                </td>
+                <td>1.0</td>
+                <td>2024/06/01</td>
+                <td>
+                    <a href="./manuals/manual1.pdf" download>
+                        <images src="./images/download.png" alt="Download" style="width: 20px; height: 20px;">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="./manuals/manual2.pdf" target="_blank">
+                        管理者ガイド
+                    </a>
+                </td>
+                <td>2.1</td>
+                <td>2024/06/10</td>
+                <td>
+                    <a href="./manuals/manual2.pdf" download>
+                        <images src="./images/download.png" alt="Download" style="width: 20px; height: 20px;">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="./manuals/manual3.pdf" target="_blank">
+                        システム設定マニュアル
+                    </a>
+                </td>
+                <td>3.0</td>
+                <td>2024/06/15</td>
+                <td>
+                    <a href="./manuals/manual3.pdf" download>
+                        <images src="./images/download.png" alt="Download" style="width: 20px; height: 20px;">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

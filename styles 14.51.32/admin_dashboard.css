@@ -1,0 +1,103 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ヘッダー */
+header {
+    background-color: #0096e6; /* ヘッダーの色を設定 */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* ダッシュボードのコンテンツ */
+.container {
+    margin-top: 80px; /* ヘッダーの下にスペースを確保 */
+    padding: 20px;
+}
+
+.dashboard-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #0096e6;
+}
+
+/* ナビゲーションメニュー */
+nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+nav a {
+    background-color: #fff;
+    color: #0096e6;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #007bb5; /* ホバー時の色 */
+    color: white;
+}
+
+nav a:active {
+    transform: scale(0.98);
+}
+
+/* 各セクションのスタイル */
+.section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.section p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* ボタンのスタイル */
+.button {
+    background-color: #0096e6;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #007bb5;
+}

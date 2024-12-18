@@ -1,0 +1,215 @@
+/* 全体のリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+header {
+    background: linear-gradient(135deg, #0077b6, #0096c7);
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ホームボタン */
+.home-button {
+    position: absolute;
+    top: 10px;
+    right: 20px; /* 右上に配置 */
+    background-color: #0077b6;
+    color: white;
+    padding: 5px 15px; /* コンパクトなパディング */
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* コンテナ */
+.container {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* テーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #0077b6;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #f0f4f8;
+}
+
+table tr:hover {
+    background-color: #e3f6f5;
+    transition: background-color 0.3s ease;
+}
+
+table input[type="text"],
+table input[type="number"] {
+    padding: 6px;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* ボタン */
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-update {
+    background-color: #28a745;
+}
+
+.btn-update:hover {
+    background-color: #218838;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.btn-add {
+    background-color: #0077b6;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.btn-add:hover {
+    background-color: #0096c7;
+}
+
+/* 入力フォーム */
+.input-container {
+    margin-top: 30px;
+    background-color: #f7f9fb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-container h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.input-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* フッター */
+footer {
+    margin-top: auto;
+    background: linear-gradient(135deg, #0077b6, #0096c7);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    table th, table td {
+        padding: 8px 10px;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    .home-button {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+}

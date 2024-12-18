@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+header {
+    background: linear-gradient(135deg, #0077b6, #0096c7);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+/* ホームボタン */
+.home-button {
+    background-color: #0077b6;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+}
+
+/* コンテナ */
+.container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+/* テーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1.2rem; /* テーブル全体を大きく */
+}
+
+table th, table td {
+    padding: 15px 25px; /* セルを大きく */
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #0096c7;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    font-size: 1.3rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #f7f9fb;
+}
+
+table tr:hover {
+    background-color: #e3f6f5;
+    transition: background-color 0.2s ease;
+}
+
+table td {
+    color: #555;
+    vertical-align: middle;
+}
+
+/* モバイルフレンドリー */
+@media (max-width: 768px) {
+    table {
+        font-size: 1rem; /* モバイル用に少し小さく */
+    }
+
+    table th, table td {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto; /* 横スクロールを有効に */
+        white-space: nowrap; /* 折り返しを防止 */
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left h1 {
+        font-size: 1.3rem; /* ヘッダーを小さく */
+    }
+
+    .home-button {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}

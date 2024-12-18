@@ -1,0 +1,184 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ヘッダー */
+header {
+    background-color: #0096e6;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ウェルカムメッセージとボタンのスタイル */
+.welcome-message {
+    font-size: 18px;
+}
+/* ヘッダー左側と右側のスタイル */
+.header-left h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    margin-right: 50px; /* 右の余白を調整 */
+}
+
+.home-button {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px; /* 横の余白を増やす */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* ボタン内で改行を防ぐ */
+}
+
+
+
+.home-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    opacity: 0.9;
+}
+
+.header-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* コンテンツの余白と検索欄のスタイル */
+.container {
+    margin-top: 10px; /* ヘッダーの高さ分の余白 */
+    padding: 20px;
+}
+
+.search-container {
+    margin-top: 100px; /* 必要に応じて調整。ヘッダーの高さに合わせて増やす */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-container form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search-container input,
+.search-container button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-container button {
+    background-color: #0096e6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #007bb5;
+}
+
+
+/* テーブルのスタイル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0096e6;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f7f7f7;
+}
+
+tr {
+    background-color: #fff;
+}
+
+/* ボタンのスタイル */
+button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.approve-btn {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    color: white;
+}
+
+.deny-btn {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* メディアクエリ: モバイル対応 */
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .header-left h1 {
+        font-size: 20px;
+    }
+
+    .header-right {
+        font-size: 16px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

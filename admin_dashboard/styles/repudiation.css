@@ -1,0 +1,118 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ヘッダー */
+header {
+    background-color: #0096e6;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 基本のスタイルを維持 */
+.header-left {
+    text-align: left;
+}
+
+.header-right {
+    text-align: right;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* ウェルカムメッセージとボタンのスタイル */
+.welcome-message {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+/* ホームに戻るボタンのスタイル */
+.home-button {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.home-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* ホバー時に少し背景を白に */
+    opacity: 0.8;
+}
+
+.header-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+/* コンテンツの余白を調整 */
+.container {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+/* テーブルのスタイル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0096e6;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+tr {
+    background-color: #fff;
+}
+
+/* メディアクエリ: モバイル対応 */
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .header-left h1 {
+        font-size: 22px;
+    }
+
+    .header-right {
+        font-size: 16px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .welcome-message {
+        font-size: 16px;
+    }
+}
