@@ -5,12 +5,7 @@ session_start();
 
 include('../db_connection.php');
 
-// ユーザー権限の確認
-$authority = $_SESSION['authority'] ?? 'user';
-if ($authority !== 'admin') {
-    echo "申し訳ございません。アクセス権限が足りないようです。<br>Powered by Synfortech     Securitysystems";
-    exit();
-}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $delete_type = $_POST['delete_type'];

@@ -125,8 +125,11 @@ if ($selected_department) {
         <a href="lendingsystem_login">
             <img src="images/loginicon.png" alt="ログインアイコン" class="header-icon">ログイン
         </a>
-        <a href="index">
+        <a href="/">
             <img src="images/requesticon.png" alt="貸出申請アイコン" class="header-icon">貸出申請
+        </a>
+        <a href="./property_damage">
+            <img src="./images/flag.png" alt="物損申請アイコン" class="header-icon">物損申請
         </a>
     </div>
 

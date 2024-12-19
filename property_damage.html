@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物損報告フォーム</title>
+    <link rel="icon" href="./ficon/rental.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/property_damage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>物損報告</h1>
+        </div>
+        <div class="header-right">
+            <a href="lendingsystem_login">
+                <img src="images/loginicon.png" alt="ログインアイコン" class="header-icon">ログイン
+            </a>
+            <a href="return_requests">
+                <img src="images/sinsei.png" alt="申請状況アイコン" class="header-icon">申請状況・返却申請
+            </a>
+            <a href="./property_damage">
+                <img src="./images/flag.png" alt="物損報告アイコン" class="header-icon">物損報告
+            </a>
+        </div>
+        <div class="hamburger-icon" id="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="hamburger-menu" id="sidebar-menu">
+            <a href="lendingsystem_login">ログイン</a>
+            <a href="return_requests">申請状況</a>
+            <a href="./property_damage">物損報告</a>
+        </div>
+    </header>
+    <div class="container">
+        <h1>報告フォーム</h1>
+        <form action="submit_report.php" method="POST" enctype="multipart/form-data">
+            <label for="reporter_name">報告者名:</label>
+            <input type="text" id="reporter_name" name="reporter_name" required>
+
+            <label for="contact_info">連絡先:</label>
+            <input type="text" id="contact_info" name="contact_info" required>
+
+            <label for="damage_location">損害発生場所:</label>
+            <input type="text" id="damage_location" name="damage_location" required>
+
+            <label for="damage_date">損害発生日時:</label>
+            <input type="datetime-local" id="damage_date" name="damage_date" required>
+
+            <label for="damage_details">損害内容:</label>
+            <textarea id="damage_details" name="damage_details" required></textarea>
+
+            <label for="image">損害物の画像:</label>
+            <input type="file" id="image" name="image">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAimZuLzcP7hrott"></div>
+            <button type="submit">報告を送信</button>
+        </form>
+    </div>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <script>
+        function toggleMenu() {
+            const hamburgerMenu = document.getElementById('sidebar-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+
+            hamburgerMenu.classList.toggle('menu-open');
+            hamburgerIcon.classList.toggle('active'); // バツにするためのクラス切り替え
+        }
+
+        document.getElementById('hamburger-icon').addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>

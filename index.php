@@ -111,6 +111,9 @@ $conn->close();
         <a href="return_requests">
             <img src="images/sinsei.png" alt="申請状況アイコン" class="header-icon">申請状況・返却申請
         </a>
+        <a href="./property_damage">
+            <img src="./images/flag.png" alt="物損報告アイコン" class="header-icon">物損報告
+        </a>
     </div>
     <div class="openbtn" onclick="toggleMenu()">
         <div class="openbtn-area">
@@ -122,7 +125,7 @@ $conn->close();
     <div class="hamburger-menu" id="sideMenu">
         <a href="lendingsystem_login">ログイン</a>
         <a href="return_requests">申請状況</a>
-        <a href="#" onclick="toggleMenu()">閉じる</a>
+        <a href="./property_damage">物損報告</a>
     </div>
 </header>
 
