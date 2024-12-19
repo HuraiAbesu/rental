@@ -1,7 +1,15 @@
 <?php
+// セッションの開始
+session_name('rental_session');
+session_start();
 
 // データベース接続ファイルをインクルード
 include('db_connection.php');
+
+// データベース接続チェック
+if (!$conn || $conn->connect_error) {
+    die("データベース接続に失敗しました: " . ($conn ? $conn->connect_error : "不明なエラー"));
+}
 
 // トランザクションを開始
 $conn->begin_transaction();
@@ -14,6 +22,21 @@ try {
 
     // POSTデータが送信された場合（団体選択）
     $selected_department = isset($_POST['department_name']) ? trim($_POST['department_name']) : null;
+
+    // 団体名に基づいてプレフィックスを付与
+    if ($selected_department) {
+        foreach ($departments_and_stalls as $department) {
+            if ($selected_department === $department['name']) {
+                $selected_department = ($department['type'] === '模擬店企画')
+                    ? '模擬店企画/' . $selected_department
+                    : '学科企画/' . $selected_department;
+                break;
+            }
+        }
+
+        // デバッグ用
+        // echo "<p>選択された団体名（修正後）: " . htmlspecialchars($selected_department, ENT_QUOTES, 'UTF-8') . "</p>";
+    }
 
     // POSTデータを受け取る（返却申請）
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
@@ -68,10 +91,12 @@ if (!$selected_department) {
 // 申請中の物品一覧を取得
 $lending_requests = [];
 if ($selected_department) {
-    $stmt = $conn->prepare("SELECT * FROM lending_requests WHERE TRIM(department_name) = ?");
+    $sql = "SELECT * FROM lending_requests WHERE department_name = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $selected_department);
     $stmt->execute();
     $lending_requests = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
     if (empty($lending_requests)) {
         echo "<p style='color: red;'>申請中の物品が見つかりません。</p>";
     }
@@ -80,10 +105,12 @@ if ($selected_department) {
 // 承認された物品一覧を取得
 $lending_status = [];
 if ($selected_department) {
-    $stmt = $conn->prepare("SELECT * FROM lending_status WHERE TRIM(department_name) = ?");
+    $sql = "SELECT * FROM lending_status WHERE department_name = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $selected_department);
     $stmt->execute();
     $lending_status = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
     if (empty($lending_status)) {
         echo "<p style='color: red;'>承認された物品が見つかりません。</p>";
     }
@@ -92,15 +119,18 @@ if ($selected_department) {
 // 返却履歴を取得
 $return_history = [];
 if ($selected_department) {
-    $stmt = $conn->prepare("SELECT * FROM return_history WHERE TRIM(department_name) = ?");
+    $sql = "SELECT * FROM return_history WHERE department_name = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $selected_department);
     $stmt->execute();
     $return_history = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
     if (empty($return_history)) {
         echo "<p style='color: red;'>返却履歴が見つかりません。</p>";
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -166,17 +196,16 @@ if ($selected_department) {
     <div class="department-selection">
         <h2>ご自身の団体または店舗名を選択してください。</h2>
         <form method="post">
-        <div class="department-buttons">
-    <?php foreach ($departments_and_stalls as $department): ?>
-        <?php 
-            $class = ($department['type'] === '学科企画') ? 'department-option' : 'stall-option';
-        ?>
-        <button type="submit" name="department_name" value="<?= htmlspecialchars($department['name'], ENT_QUOTES, 'UTF-8'); ?>" class="<?= $class; ?>">
-            <?= htmlspecialchars($department['name'], ENT_QUOTES, 'UTF-8'); ?>
-        </button>
-    <?php endforeach; ?>
-</div>
-
+            <div class="department-buttons">
+                <?php foreach ($departments_and_stalls as $department): ?>
+                    <?php 
+                        $class = ($department['type'] === '学科企画') ? 'department-option' : 'stall-option';
+                    ?>
+                    <button type="submit" name="department_name" value="<?= htmlspecialchars($department['name'], ENT_QUOTES, 'UTF-8'); ?>" class="<?= $class; ?>">
+                        <?= htmlspecialchars($department['name'], ENT_QUOTES, 'UTF-8'); ?>
+                    </button>
+                <?php endforeach; ?>
+            </div>
         </form>
     </div>
 <?php else: ?>
@@ -197,20 +226,13 @@ if ($selected_department) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $stmt = $conn->prepare("SELECT * FROM lending_requests WHERE department_name = ?");
-                $stmt->bind_param("s", $selected_department);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['item_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['request_time']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                    echo "</tr>";
-                }
-                ?>
+                <?php foreach ($lending_requests as $request): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($request['item_name']); ?></td>
+                        <td><?= htmlspecialchars($request['request_time']); ?></td>
+                        <td><?= htmlspecialchars($request['quantity']); ?></td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <br>
@@ -228,23 +250,16 @@ if ($selected_department) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $stmt = $conn->prepare("SELECT * FROM lending_status WHERE department_name = ?");
-                $stmt->bind_param("s", $selected_department);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['item_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['approval_time']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                    echo "<td>
-                            <button class='return-button' data-item-id='" . htmlspecialchars($row['id']) . "'>返却申請</button>
-                          </td>";
-                    echo "</tr>";
-                }
-                ?>
+                <?php foreach ($lending_status as $status): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($status['item_name']); ?></td>
+                        <td><?= htmlspecialchars($status['approval_time']); ?></td>
+                        <td><?= htmlspecialchars($status['quantity']); ?></td>
+                        <td>
+                            <button class="return-button" data-item-id="<?= htmlspecialchars($status['id']); ?>">返却申請</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <br>
@@ -263,22 +278,17 @@ if ($selected_department) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $return_stmt = $conn->prepare("SELECT * FROM return_history WHERE department_name = ?");
-                $return_stmt->bind_param("s", $selected_department);
-                $return_stmt->execute();
-                $return_result = $return_stmt->get_result();
-
-                while ($row = $return_result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['item_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['return_request_time']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                    echo "<td class='return-status " . ($row['return_approval_status'] == '未承認' ? 'unapproved' : '') . "'>" . htmlspecialchars($row['return_approval_status']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['return_approval_time']) . "</td>";
-                    echo "</tr>";
-                }
-                ?>
+                <?php foreach ($return_history as $history): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($history['item_name']); ?></td>
+                        <td><?= htmlspecialchars($history['return_request_time']); ?></td>
+                        <td><?= htmlspecialchars($history['quantity']); ?></td>
+                        <td class="return-status <?= $history['return_approval_status'] == '未承認' ? 'unapproved' : ''; ?>">
+                            <?= htmlspecialchars($history['return_approval_status']); ?>
+                        </td>
+                        <td><?= htmlspecialchars($history['return_approval_time']); ?></td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

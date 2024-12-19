@@ -3,8 +3,7 @@
 session_name('rental_session');
 session_start();
 
-include('../db_connection.php');
-
+include('./db_connection.php');
 
 // ユーザーがログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -14,6 +13,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 // セッションからユーザー名を取得
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : 'ゲスト';
+
 // 検索条件をセッションに保存または取得
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     $_SESSION['search_params'] = [
@@ -117,7 +117,7 @@ try {
     <!-- 検索フォーム -->
     <div class="search-container">
         <form method="post">
-            <input type="text" name="department_name" placeholder="学科名" value="<?= htmlspecialchars($search_params['department_name']); ?>">
+            <input type="text" name="department_name" placeholder="学科名/模擬店名" value="<?= htmlspecialchars($search_params['department_name']); ?>">
             <input type="number" name="quantity" placeholder="数量" value="<?= htmlspecialchars($search_params['quantity']); ?>">
             <input type="date" name="return_request_time" placeholder="返却申請時間" value="<?= htmlspecialchars($search_params['return_request_time']); ?>">
             <select name="return_approval_status">
