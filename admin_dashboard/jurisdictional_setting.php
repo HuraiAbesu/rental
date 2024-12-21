@@ -40,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+define('PAGE_TITLE', '物品ナビ　組織部門管理'); // このページ用のタイトル
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -143,12 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<header>
-    <div class="header-left">
-        <h1>組織部門管理</h1>
-    </div>
-    <a href="./admin_dashboard" class="home-button">ホーム</a>
-</header>
+
 <div class="container">
     <div class="dashboard-info">
         <h2>組織部門管理</h2>

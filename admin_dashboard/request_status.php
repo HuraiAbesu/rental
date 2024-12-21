@@ -8,7 +8,7 @@ include('../db_connection.php');
 
 // ユーザーがログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: /rental_system/lendingsystem_login');
+    header('Location: https://rental.synfortech.com/lendingsystem_login');
     exit;
 }
 
@@ -97,6 +97,8 @@ if (isset($_POST['deny'])) {
         }
     }
 }
+define('PAGE_TITLE', '物品ナビ　申請状況'); // このページ用のタイトル
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -110,17 +112,7 @@ if (isset($_POST['deny'])) {
 </head>
 <body>
     <!-- ヘッダー -->
-    <header>
-    <div class="header-left">
-        <h1>貸出申請状況</h1>
-    </div>
-    <div class="header-right">
-        <span class="welcome-message">ようこそ, <?= htmlspecialchars($name); ?>さん</span>
-        <a href="admin_dashboard" class="home-button">
-            <img src="../images/homeicon.png" alt="ホームアイコン" class="header-icon">ホームに戻る
-        </a>
-    </div>
-</header>
+
 
     <!-- 検索フォーム -->
     <div class="search-container">

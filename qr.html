@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>QRコードテスト</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+    <div id="qr-code"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const qrContainer = document.getElementById("qr-code");
+
+            // デバッグ: データ確認
+            const testData = "Test123"; // ここをシンプルな文字列に変更
+            console.log("QRコード生成用データ:", testData);
+
+            // QRコード生成
+            try {
+                QRCode.toCanvas(qrContainer, encodeURIComponent(qrData), function (error) {
+    if (error) {
+        console.error("QRコード生成エラー:", error);
+    } else {
+        console.log("QRコードが正常に生成されました");
+    }
+});
+
+            } catch (error) {
+                console.error("QRコード生成中の例外:", error);
+            }
+        });
+    </script>
+</body>
+</html>

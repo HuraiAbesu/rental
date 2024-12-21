@@ -10,7 +10,7 @@ session_start();
 
 // ユーザーがログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: /rental_system/lendingsystem_login');
+    header('Location: https://rental.synfortech.com/lendingsystem_login');
     exit;
 }
 
@@ -46,7 +46,8 @@ if (isset($_POST['download_csv'])) {
     fclose($output);
     exit;
 }    
-
+define('PAGE_TITLE', '物品ナビ　返却履歴'); // このページ用のタイトル
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -61,18 +62,6 @@ if (isset($_POST['download_csv'])) {
 </head>
 <body>
 
-<!-- ヘッダー -->
-<header>
-    <div class="header-left">
-        <h1>返却履歴</h1>
-    </div>
-    <div class="header-right">
-        <span class="welcome-message">ようこそ、<?php echo htmlspecialchars($name); ?> さん</span>
-        <a href="admin_dashboard" class="home-button">
-                        <img src="../images/homeicon.png" alt="ホームアイコン" class="header-icon">ホームに戻る
-        </a>
-    </div>
-</header>
 <form method="post" action="">
     <button type="submit" name="download_csv" class="csv-btn">CSVダウンロード</button>
 </form>

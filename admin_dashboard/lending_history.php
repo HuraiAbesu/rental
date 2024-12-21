@@ -5,15 +5,19 @@ session_start();
 
 include('../db_connection.php');
 
-
 // ユーザーがログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: /rental_system/lendingsystem_login');
+    header('Location: https://rental.synfortech.com/lendingsystem_login');
     exit;
 }
 
 // セッションからユーザー名を取得
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : 'ゲスト';
+
+
+define('PAGE_TITLE', '物品ナビ　貸出履歴'); // このページ用のタイトル
+include 'header.php';
+
 
 // rental_systemデータベースから貸出履歴を取得
 $sql = "SELECT id, item_name, department_name, grade_year, representative_name, project_name, quantity, request_time, approval_status, approval_time FROM lending_status";
@@ -23,6 +27,7 @@ if ($result->num_rows > 0) {
     $lending_history = $result->fetch_all(MYSQLI_ASSOC);
 } else {
     $lending_history = [];
+
 }
 ?>
 
@@ -37,18 +42,7 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="./styles/lending_history.css">
 </head>
 <body>
-<header>
-    <div class="header-left">
-        <h1>貸出履歴</h1>
-    </div>
-    <div class="header-right">
-        <span class="welcome-message">ようこそ, <?= htmlspecialchars($name); ?>さん</span>
-        <!-- ホームに戻るボタン -->
-        <a href="admin_dashboard" class="home-button">
-            <img src="../images/homeicon.png" alt="ホームアイコン" class="header-icon">ホームに戻る
-        </a>
-    </div>
-</header>
+
     <div class="container">
         <table>
             <thead>

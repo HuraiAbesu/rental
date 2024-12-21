@@ -7,7 +7,7 @@ include('../db_connection.php');
 
 // ユーザーがログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: /rental_system/lendingsystem_login');
+    header('Location: https://rental.synfortech.com/lendingsystem_login');
     exit;
 }
 
@@ -96,11 +96,15 @@ $no_tasks = ($request_count == 0 && $unapproved_return_count == 0) ? "Good News!
             <nav class="menu-grid">
                 <a href="request_status" class="menu-item">
                     <img src="./icon/sinsei.png" alt="申請状況">
-                    申請承認・否認
+                    貸出申請
                 </a>
                 <a href="lending_history" class="menu-item">
-                    <img src="./icon/sinseirireki.png" alt="貸出履歴">
-                    貸出履歴
+                    <img src="./icon/sinseirireki.png" alt="貸出申請承認履歴">
+                    貸出申請承認履歴
+                </a>
+                <a href="lending" class="menu-item">
+                    <img src="./icon/kasidasisyouninn.png" alt="貸出処理">
+                    貸出処理
                 </a>
                 <a href="return_request" class="menu-item">
                     <img src="./icon/henkyakusinsei.png" alt="返却申請">

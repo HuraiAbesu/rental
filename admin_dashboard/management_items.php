@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+define('PAGE_TITLE', '物品ナビ　物品管理'); // このページ用のタイトル
+include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -68,12 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="stylesheet" href="./styles/management_items.css">
 </head>
 <body>
-<header>
-    <div class="header-left">
-        <h1>物品管理</h1>
-    </div>
-    <a href="./admin_dashboard" class="home-button">ホーム</a>
-</header>
+
 <div class="container">
     <h2>物品一覧</h2>
 

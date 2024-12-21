@@ -28,6 +28,8 @@ if ($result) {
 } else {
     echo "データ取得エラー: " . $conn->error;
 }
+define('PAGE_TITLE', '物品ナビ　貸出品一覧'); // このページ用のタイトル
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,12 +42,7 @@ if ($result) {
 <link rel="icon" href="../ficon/rental.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <div class="header-left">
-        <h1>貸出品一覧表</h1>
-    </div>
-    <a href="./admin_dashboard" class="home-button">ホーム</a>
-</header>
+
 
 <div class="container">
     <h2>承認済みの貸出品</h2>

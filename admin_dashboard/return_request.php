@@ -3,11 +3,11 @@
 session_name('rental_session');
 session_start();
 
-include('./db_connection.php');
+include('../db_connection.php');
 
 // ユーザーがログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: /rental_system/lendingsystem_login');
+    header('Location: https://rental.synfortech.com/lendingsystem_login');
     exit;
 }
 
@@ -84,6 +84,8 @@ try {
     $conn->rollback();
     echo "<script>alert('エラーが発生しました: " . htmlspecialchars($e->getMessage()) . "');</script>";
 }
+define('PAGE_TITLE', '物品ナビ　返却申請一覧'); // このページ用のタイトル
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -91,24 +93,12 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>申請状況・返却申請</title>
+    <title>返却申請一覧</title>
     <link rel="icon" href="../ficon/rental.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/return_request.css">
 </head>
 <body>
 
-<!-- ヘッダー -->
-<header>
-    <div class="header-left">
-        <h1>返却申請</h1>
-    </div>
-    <div class="header-right">
-        <span class="welcome-message">ようこそ, <?= htmlspecialchars($name); ?>さん</span>
-        <a href="admin_dashboard" class="home-button">
-            <img src="../images/homeicon.png" alt="ホームアイコン" class="header-icon">ホームに戻る
-        </a>
-    </div>
-</header>
 
 <!-- コンテンツ表示 -->
 <div class="container">

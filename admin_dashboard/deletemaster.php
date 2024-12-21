@@ -5,7 +5,10 @@ session_start();
 
 include('../db_connection.php');
 
-
+// ユーザー情報の取得
+$name = htmlspecialchars($_SESSION['name']);
+$hour = date('H');
+$greeting = $hour < 12 ? "おはようございます" : ($hour < 18 ? "こんにちは" : "こんばんは");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $delete_type = $_POST['delete_type'];
@@ -35,18 +38,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "返却履歴が削除されました。";
             break;
 
-        case '否認履歴削除':
-            $stmt = $conn->prepare("DELETE FROM denied_requests");
-            $stmt->execute();
-            echo "否認履歴が削除されました。";
+        case '否認履歴削除': // テーブル名を正しいものに修正
+            try {
+                $stmt = $conn->prepare("DELETE FROM repudiation");
+                $stmt->execute();
+                echo "否認履歴が削除されました。";
+            } catch (mysqli_sql_exception $e) {
+                if (strpos($e->getMessage(), 'doesn\'t exist') !== false) {
+                    echo "エラー: repudiation テーブルが存在しません。";
+                } else {
+                    echo "エラーが発生しました: " . $e->getMessage();
+                }
+            }
             break;
 
-        case '全ての履歴を削除':
-            $conn->query("DELETE FROM lending_requests");
-            $conn->query("DELETE FROM lending_status");
-            $conn->query("DELETE FROM return_requests");
-            $conn->query("DELETE FROM return_history");
-            $conn->query("DELETE FROM denied_requests");
+        case '全ての履歴を削除': // 全体削除処理でもテーブル名を修正
+            $tables = ['lending_requests', 'lending_status', 'return_requests', 'return_history', 'repudiation'];
+            foreach ($tables as $table) {
+                try {
+                    $conn->query("DELETE FROM $table");
+                } catch (mysqli_sql_exception $e) {
+                    if (strpos($e->getMessage(), 'doesn\'t exist') !== false) {
+                        echo "エラー: $table テーブルが存在しません。<br>";
+                    } else {
+                        echo "エラーが発生しました: " . $e->getMessage() . "<br>";
+                    }
+                }
+            }
             echo "全ての履歴が削除されました。";
             break;
 
@@ -58,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -71,9 +90,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<header>
-    <div class="header-left">
-        <h1>DeleteMaster</h1>
+<header class="header">
+    <div class="header-container">
+        <h1 class="site-title"><a href="./admin_dashboard">物品ナビーデータ削除</a></h1>
+        <div class="user-info">
+            <p class="greeting"><?= $greeting ?>、<?= htmlspecialchars($name) ?>さん</p>
+            <a href="./manual-box" class="icon-link">
+                <img src="./icon/help-icon.png" alt="ヘルプアイコン" class="icon-img">
+                <span>ヘルプ</span>
+            </a>
+            <a href="./logout" class="icon-link">
+                <img src="./icon/logout-icon.png" alt="ログアウトアイコン" class="icon-img">
+                <span>ログアウト</span>
+            </a>
+        </div>
     </div>
 </header>
 

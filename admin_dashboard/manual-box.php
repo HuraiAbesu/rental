@@ -1,3 +1,21 @@
+<?php
+// セッションの開始
+session_name('rental_session');
+session_start();
+
+include('../db_connection.php');
+
+// ユーザーがログインしていない場合、ログインページにリダイレクト
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: https://rental.synfortech.com/lendingsystem_login');
+    exit;
+}
+
+// セッションからユーザー名を取得（エラーを避けるためのデフォルト値を設定）
+$name = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'ゲスト';
+define('PAGE_TITLE', '物品ナビ　Manual'); // このページ用のタイトル
+include 'header.php';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,12 +26,6 @@
     <link rel="icon" href="../ficon/rental.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <div class="header-left">
-        <h1>マニュアル一覧表</h1>
-    </div>
-    <a href="./admin_dashboard" class="home-button">ホーム</a>
-</header>
 
 <div class="container">
     <h2>マニュアル一覧</h2>

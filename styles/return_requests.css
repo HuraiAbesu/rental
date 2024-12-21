@@ -154,6 +154,120 @@ header a:hover {
 
 
 
+
+
+
+/* ポップアップのスタイル */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    padding: 30px 20px;
+    z-index: 1000;
+}
+
+/* 表示時 */
+.popup.show {
+    display: block;
+}
+
+/* テキスト部分 */
+.popup p {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+
+/* 貸出コード表示ボタンのスタイル */
+.borrow-button {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* モダンなグラデーション */
+    color: white;
+    padding: 8px 20px; /* 余白を少し小さく */
+    border: none;
+    border-radius: 40px; /* 丸みを維持しつつ小さく */
+    cursor: pointer;
+    font-size: 14px; /* フォントサイズを小さめに */
+    font-weight: bold;
+    transition: all 0.3s ease; /* なめらかなアニメーション */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* 影を少し控えめに */
+}
+
+.borrow-button:hover {
+    transform: scale(1.05); /* ホバー時に少し大きく */
+    background: linear-gradient(135deg, #2575fc, #6a11cb); /* グラデーションを反転 */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* 影を濃く */
+}
+
+
+/* ボタンのスタイル */
+.popup button {
+    font-size: 16px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* 完全に丸いボタン */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 10px;
+    min-width: 120px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ボタンホバー時 */
+.popup button:hover {
+    transform: scale(1.05); /* 少し大きく */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* はいボタン専用 */
+#confirm-borrow {
+    background: linear-gradient(135deg, #34c759, #0a9950);
+}
+
+#confirm-borrow:hover {
+    background: linear-gradient(135deg, #0a9950, #34c759);
+}
+
+/* いいえボタン専用 */
+#cancel-borrow {
+    background: linear-gradient(135deg, #ff3b30, #c0392b);
+}
+
+#cancel-borrow:hover {
+    background: linear-gradient(135deg, #c0392b, #ff3b30);
+}
+
+/* オーバーレイ */
+#popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#popup-overlay.show {
+    display: block;
+}
+
+
+
 /* 学科選択の一覧スタイル */
 .department-selection {
     padding: 100px 20px;
@@ -198,33 +312,81 @@ header a:hover {
     margin: 100px auto 0 auto;
 }
 
+
+
+
+
+/* テーブル全体のスタイル */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #333333; /* 黒背景 */
+    border-radius: 8px; /* 角を少し丸く */
+    overflow: hidden; /* 丸い角に合わせて内容を隠す */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 控えめな影 */
 }
 
-table th, table td {
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    text-align: left;
-    font-size: 16px;
-}
-
+/* テーブルヘッダーのスタイル */
 table th {
-    background-color: #2d3436;
-    color: white;
+    padding: 12px;
+    background-color: #444444; /* ヘッダーの背景を少し明るい黒に */
+    color: #ffffff; /* 白い文字 */
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #555555; /* 下線で区切る */
 }
 
+/* テーブルの行のスタイル (デフォルト) */
+table tr {
+    background-color: #ffffff; /* 行の背景を白に */
+    color: #000000; /* 行の文字を黒に */
+}
+
+/* テーブルセルのスタイル */
 table td {
-    background-color: #f8f9fa;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #dddddd; /* 行の区切り線を薄いグレーに */
 }
 
-table tr:hover td {
-    background-color: #dfe6e9;
+/* 偶数行の背景色 */
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* 偶数行をわずかに薄いグレーに */
 }
+
+/* 行のホバー時のスタイル */
+table tr:hover {
+    background-color: #f0f0f0; /* ホバー時に少し濃いグレー */
+    cursor: pointer; /* ホバー時にポインタを表示 */
+    transition: background-color 0.3s ease; /* なめらかな背景色変化 */
+}
+
+
+/* テーブルフッターのスタイル（必要に応じて） */
+table tfoot td {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333; /* フッター文字色を黒に */
+    background-color: #f5f5f5; /* ヘッダーと統一感のある背景色 */
+    text-align: right;
+    padding: 12px;
+    border-top: 2px solid #dddddd; /* 太めの上線で区切る */
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    table th, table td {
+        font-size: 12px; /* フォントサイズを小さく */
+        padding: 8px; /* 余白を少し狭める */
+    }
+}
+
+
+
+
+
 
 /* 黄緑色の返却申請ボタン */
 .return-button {
@@ -340,38 +502,169 @@ table tr:hover td {
     display: none;
 }
 
+
+.popup {
+    display: none;
+}
+
+.popup.show {
+    display: block;
+}
+
+.overlay {
+    display: none;
+}
+
+.overlay.show {
+    display: block;
+}
+.show-popup-button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.show-popup-button:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
+}
+
+
 /* 学科のボタンスタイル */
 .department-buttons .department-option {
-    background-color: #e0f7fa; /* 学科の背景色 */
-    color: #00796b; /* 学科の文字色 */
-    border: 1px solid #00796b;
-    padding: 10px 20px;
-    margin: 5px;
+    background: linear-gradient(135deg, #76c7c0, #34a7a1); /* 学科のモダンなグラデーション */
+    color: white; /* 白い文字 */
+    border: none; /* ボーダーを削除 */
+    padding: 12px 24px; /* ボタンの余白を広く */
+    margin: 10px; /* ボタン間のスペースを広げる */
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50px; /* 丸みを追加 */
     font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* なめらかなアニメーション */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* ボタンに影を追加 */
 }
 
 .department-buttons .department-option:hover {
-    background-color: #b2ebf2; /* 学科のホバー時の背景色 */
+    background: linear-gradient(135deg, #34a7a1, #76c7c0); /* グラデーションを反転 */
+    transform: scale(1.05); /* 少し大きく */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* ホバー時の影を濃く */
 }
 
 /* 模擬店のボタンスタイル */
 .department-buttons .stall-option {
-    background-color: #fff3e0; /* 模擬店の背景色 */
-    color: #e65100; /* 模擬店の文字色 */
-    border: 1px solid #e65100;
-    padding: 10px 20px;
-    margin: 5px;
+    background: linear-gradient(135deg, #ffb74d, #f57c00); /* 模擬店のモダンなグラデーション */
+    color: white; /* 白い文字 */
+    border: none; /* ボーダーを削除 */
+    padding: 12px 24px; /* ボタンの余白を広く */
+    margin: 10px; /* ボタン間のスペースを広げる */
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50px; /* 丸みを追加 */
     font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* なめらかなアニメーション */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* ボタンに影を追加 */
 }
 
 .department-buttons .stall-option:hover {
-    background-color: #ffe0b2; /* 模擬店のホバー時の背景色 */
+    background: linear-gradient(135deg, #f57c00, #ffb74d); /* グラデーションを反転 */
+    transform: scale(1.05); /* 少し大きく */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* ホバー時の影を濃く */
 }
 
+
+/* モダンなポップアップデザイン */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    padding: 30px 20px;
+    z-index: 1000;
+}
+
+/* 表示時 */
+.popup.show {
+    display: block;
+}
+
+/* テキスト部分 */
+.popup p {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+/* ボタンのスタイル */
+.popup button {
+    font-size: 16px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* 完全に丸いボタン */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 10px;
+    min-width: 120px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ボタンホバー時 */
+.popup button:hover {
+    transform: scale(1.05); /* 少し大きく */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* はいボタン専用 */
+#confirm-borrow {
+    background: linear-gradient(135deg, #34c759, #0a9950);
+}
+
+#confirm-borrow:hover {
+    background: linear-gradient(135deg, #0a9950, #34c759);
+}
+
+/* いいえボタン専用 */
+#cancel-borrow {
+    background: linear-gradient(135deg, #ff3b30, #c0392b);
+}
+
+#cancel-borrow:hover {
+    background: linear-gradient(135deg, #c0392b, #ff3b30);
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 480px) {
+    .popup {
+        padding: 20px 15px;
+    }
+
+    .popup p {
+        font-size: 16px;
+    }
+
+    .popup button {
+        font-size: 14px;
+        padding: 12px 25px;
+    }
+}
 
 
 

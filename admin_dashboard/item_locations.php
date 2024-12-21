@@ -47,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit();
 }
+define('PAGE_TITLE', '物品ナビ　物品保管エリア'); // このページ用のタイトル
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -169,12 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     </script>
 </head>
 <body>
-<header>
-    <div class="header-left">
-        <h1>物品保管エリア</h1>
-    </div>
-    <a href="./admin_dashboard" class="home-button">ホーム</a>
-</header>
+
 
 <div class="search-container">
     <input type="text" placeholder="検索..." onkeyup="filterTable(this.value)">

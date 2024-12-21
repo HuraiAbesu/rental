@@ -14,19 +14,95 @@ html, body {
     padding: 0;
 }
 
+
 /* ヘッダー */
-header {
-    background-color: #007bff;
-    color: #fff;
+.header {
+    background: linear-gradient(to right, #0077b6, #00a1cc);
+    color: white;
+    padding: 15px 20px;
+    height: 50px; /* 高さを固定 */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.header-left h1 {
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.site-title a {
+    text-decoration: none;
+    color: white;
     font-size: 24px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.greeting {
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+.icon-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-img {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+
+
+
+/* ボタンのスタイルを統一 */
+.delete-btn {
+    background: linear-gradient(90deg, #ff4d4d, #cc0000);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #e60000, #990000);
+}
+
+.delete-all {
+    background: linear-gradient(90deg, #ff0000, #b30000);
+}
+
+/* ポップアップの内容を統一 */
+.popup-content {
+    border: 1px solid #cccccc;
+    background: #f8f9fa;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* フッターを追加 */
+footer {
+    background: linear-gradient(90deg, #003399, #0066cc);
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
 }
 
 /* メインコンテンツ */
